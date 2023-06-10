@@ -27,4 +27,4 @@ jobs:
         pip install django djangorestframework
     - name: Run Tests
       run: |
-        python ../gpt_tools/manage.py runserver
+        python ./manage.py runserver
