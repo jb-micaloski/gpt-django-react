@@ -9,9 +9,9 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 const styles = (theme) => ({
   card: {
-    boxShadow: theme.shadows[3],
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
+    boxShadow: theme.shadows[5],
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     [theme.breakpoints.up("xs")]: {
       paddingTop: theme.spacing(3),
       paddingBottom: theme.spacing(3),
@@ -35,12 +35,12 @@ const styles = (theme) => ({
       paddingRight: theme.spacing(6),
     },
     [theme.breakpoints.down("xl")]: {
-      width: "auto",
+      width:"90%",
+      maxWidth: "none !important",
     },
   },
   wrapper: {
     position: "relative",
-    backgroundColor: "#FFFFFF",
     paddingBottom: theme.spacing(2),
   },
   container: {
@@ -64,6 +64,9 @@ const styles = (theme) => ({
   fontBaloo: {
     fontFamily: "'Baloo Bhaijaan', cursive",
   },
+  formContainer: {
+    display: "flex",
+  }
 });
 
 function FormSection(props) {
@@ -73,59 +76,57 @@ function FormSection(props) {
 
   return (
         <div className={classNames("container-fluid", classes.container)}>
-          <Typography variant="h3" align="center" className="lg-mg-bottom">
-            Start NOW!
-          </Typography>  
+          
           <Box display="flex" justifyContent="center" className="row">
             <Card
-              className={classes.card}
-            >
+                className={classes.card}
+              >
+              <Typography variant="h3" align="center" className="lg-mg-bottom">
+                Start NOW!
+              </Typography>  
               <div className={classNames(classes.containerFix, "container")}>
                 <Box justifyContent="center" className="row">
-                  <Grid item xs={12} md={5} >
+                  <Grid item xs={12} md={5} width="100%">
                     <Box
-                      display="flex"
                       flexDirection="column"
-                      justifyContent="space-between"
+                      justifyContent="center"
                       height="100%"
                     >
-                      <Grid item align='center' className={classes.wrapper}>
-                        <FormControl component='fieldset'>
-                          <FormHelperText>
-                                <h3 className={classes.fontBaloo}>
-                                    Who are you?
-                                </h3>
-                          </FormHelperText>
+                      <Grid item align='center' className={classes.wrapper} width="100%">
+                        <FormControl component='fieldset' className={classes.formContainer}>
                           <TextField required={true} 
                                         type='text'
                                         fullWidth
+                                        id="outlined-helperText"
+                                        label="Who Are You?"
+                                        defaultValue=""
+                                        className={classes.wrapper}
                                         inputProps={{
                                             min: 1,
-                                            style: {textAlign:'center'}
+                                            style: {textAlign:'center', fontFamily: "'Baloo Bhaijaan', cursive"}
                                         }}/>
-                          <FormHelperText>
-                                <h3 className={classes.fontBaloo}>
-                                  What's your product?
-                                </h3>
-                          </FormHelperText>
                           <TextField required={true} 
                                         type='text'
                                         fullWidth
+                                        id="outlined-helperText"
+                                        label="What's your product?"
+                                        defaultValue=""
+                                        className={classes.wrapper}
                                         inputProps={{
                                             min: 1,
-                                            style: {textAlign:'center'}
+                                            style: {textAlign:'center', fontFamily: "'Baloo Bhaijaan', cursive"}
                                         }}/>
-                          <FormHelperText>
-                                <h3 className={classes.fontBaloo}>
-                                  Describe the product
-                                </h3>
-                          </FormHelperText>
+                          
                           <TextField required={true} 
                                         type='text'
                                         fullWidth
+                                        id="outlined-helperText"
+                                        label="Describe the product"
+                                        defaultValue=""
+                                        className={classes.wrapper}
                                         inputProps={{
                                             min: 1,
-                                            style: {textAlign:'center'}
+                                            style: {textAlign:'center', fontFamily: "'Baloo Bhaijaan', cursive"}
                                         }}/>
                         </FormControl>
                       </Grid>
