@@ -3,6 +3,6 @@ from .views import PainEscaleView, CreateCCView
 
 
 urlpatterns = [
-    path('', PainEscaleView.as_view()),
+    path('view', PainEscaleView.as_view()),
     path('create-session', CreateCCView.as_view()),
 ]

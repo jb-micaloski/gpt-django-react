@@ -1,34 +1,27 @@
 import React, { Fragment, useRef, useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 import {
   AppBar,
   Toolbar,
   Typography,
-  Avatar,
   Drawer,
   List,
   IconButton,
   ListItem,
   ListItemIcon,
-  ListItemText,
   Hidden,
   Tooltip,
   Box,
 } from "@mui/material";
 import withStyles from "@mui/styles/withStyles";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import ImageIcon from "@mui/icons-material/Image";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import RoomPreferencesIcon from '@mui/icons-material/RoomPreferences';
 import MenuIcon from "@mui/icons-material/Menu";
-import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-import MessagePopperButton from "./MessagePopperButton";
 import SideDrawer from "./SideDrawer";
-import Balance from "./Balance";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import ScaleIcon from '@mui/icons-material/Scale';
 
 const styles = (theme) => ({
   appBar: {
@@ -152,52 +145,18 @@ function NavBar(props) {
   const menuItems = [
     {
       link: "/c/dashboard",
-      name: "Dashboard",
+      name: "PS Helper",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <DashboardIcon
+          <ScaleIcon
             className={
               selectedTab === "Dashboard" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
         ),
-        mobile: <DashboardIcon className="text-white" />,
-      },
-    },
-    {
-      link: "/c/posts",
-      name: "Posts",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <ImageIcon
-            className={
-              selectedTab === "Posts" ? classes.textPrimary : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <ImageIcon className="text-white" />,
-      },
-    },
-    {
-      link: "/c/subscription",
-      name: "Subscription",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <AccountBalanceIcon
-            className={
-              selectedTab === "Subscription"
-                ? classes.textPrimary
-                : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <AccountBalanceIcon className="text-white" />,
+        mobile: <ScaleIcon className="text-white" />,
       },
     },
     {
@@ -235,7 +194,7 @@ function NavBar(props) {
                 display="inline"
                 color="primary"
               >
-                Wa
+                ChatGPT
               </Typography>
               <Typography
                 variant="h4"
@@ -243,51 +202,17 @@ function NavBar(props) {
                 display="inline"
                 color="secondary"
               >
-                Ver
+                CopyTools
               </Typography>
             </Hidden>
           </Box>
-          <Box
-            display="flex"
-            justifyContent="flex-end"
-            alignItems="center"
-            width="100%"
-          >
-            {isWidthUpSm && (
-              <Box mr={3}>
-                <Balance
-                  balance={2573}
-                  openAddBalanceDialog={openAddBalanceDialog}
-                />
-              </Box>
-            )}
-            <MessagePopperButton messages={messages} />
-            <ListItem
-              disableGutters
-              className={classNames(classes.iconListItem, classes.smBordered)}
-            >
-              <Avatar
-                alt="profile picture"
-                src={`${process.env.PUBLIC_URL}/images/logged_in/profilePicture.jpg`}
-                className={classNames(classes.accountAvatar)}
-              />
-              {isWidthUpSm && (
-                <ListItemText
-                  className={classes.username}
-                  primary={
-                    <Typography color="textPrimary">Username</Typography>
-                  }
-                />
-              )}
-            </ListItem>
-          </Box>
           <IconButton
             onClick={openDrawer}
-            color="primary"
+            color="secondary"
             aria-label="Open Sidedrawer"
             size="large"
           >
-            <SupervisorAccountIcon />
+            <RoomPreferencesIcon />
           </IconButton>
           <SideDrawer open={isSideDrawerOpen} onClose={closeDrawer} />
         </Toolbar>

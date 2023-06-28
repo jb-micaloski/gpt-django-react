@@ -72,7 +72,7 @@ const styles = theme => ({
         marginBottom: `${theme.spacing(8)} !important`
       },
       [theme.breakpoints.down('md')]: {
-        marginBottom: `${theme.spacing(6)} !important`
+        marginBottom: `${theme.spacing(5)} !important`
       },
       [theme.breakpoints.down('sm')]: {
         marginBottom: `${theme.spacing(4)} !important`

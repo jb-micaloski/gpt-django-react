@@ -1,61 +1,56 @@
 import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Typography, Box } from "@mui/material";
-import SettingsArea from "./SettingsArea";
-import UserDataArea from "./UserDataArea";
-import AccountInformationArea from "./AccountInformationArea";
-import StatisticsArea from "./StatisticsArea";
+import { Typography, Box, Hidden } from "@mui/material";
+import withStyles from "@mui/styles/withStyles";
+import PainScale from "./PainScale";
+
+const styles = (theme) => ({
+  brandText: {
+    fontFamily: "'Baloo Bhaijaan', cursive",
+    fontWeight: 400,
+  },
+});
 
 function Dashboard(props) {
   const {
     selectDashboard,
-    CardChart,
-    statistics,
-    toggleAccountActivation,
-    pushMessageToSnackbar,
-    targets,
-    setTargets,
-    isAccountActivated,
+    classes,
   } = props;
 
   useEffect(selectDashboard, [selectDashboard]);
 
   return (
     <Fragment>
-      <StatisticsArea CardChart={CardChart} data={statistics} />
       <Box mt={4}>
-        <Typography variant="subtitle1" gutterBottom>
-          Your Account
-        </Typography>
+        <Hidden smDown>
+          <Typography
+            variant="h5"
+            className={classes.brandText}
+            display="inline"
+            color="primary"
+          >
+            PainScale
+          </Typography>
+          <Typography
+            variant="h5"
+            className={classes.brandText}
+            display="inline"
+            color="secondary"
+          >
+            Helper
+          </Typography>
+        </Hidden>
       </Box>
-      <AccountInformationArea
-        isAccountActivated={isAccountActivated}
-        toggleAccountActivation={toggleAccountActivation}
-      />
       <Box mt={4}>
-        <Typography variant="subtitle1" gutterBottom>
-          Settings
-        </Typography>
+        <PainScale />
       </Box>
-      <SettingsArea pushMessageToSnackbar={pushMessageToSnackbar} />
-      <UserDataArea
-        pushMessageToSnackbar={pushMessageToSnackbar}
-        targets={targets}
-        setTargets={setTargets}
-      />
     </Fragment>
   );
 }
 
 Dashboard.propTypes = {
-  CardChart: PropTypes.elementType,
-  statistics: PropTypes.object.isRequired,
-  toggleAccountActivation: PropTypes.func,
-  pushMessageToSnackbar: PropTypes.func,
-  targets: PropTypes.arrayOf(PropTypes.object).isRequired,
-  setTargets: PropTypes.func.isRequired,
-  isAccountActivated: PropTypes.bool.isRequired,
   selectDashboard: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
-export default Dashboard;
+export default withStyles(styles, { withTheme: true })(Dashboard);

@@ -229,7 +229,7 @@ function Main(props) {
 
   const selectDashboard = useCallback(() => {
     smoothScrollTop();
-    document.title = "WaVer - Dashboard";
+    document.title = "ChatGPT CopyTools - Dashboard";
     setSelectedTab("Dashboard");
     if (!hasFetchedCardChart) {
       setHasFetchedCardChart(true);
@@ -246,7 +246,7 @@ function Main(props) {
 
   const selectPosts = useCallback(() => {
     smoothScrollTop();
-    document.title = "WaVer - Posts";
+    document.title = "ChatGPT CopyTools - Posts";
     setSelectedTab("Posts");
     if (!hasFetchedImageCropper) {
       setHasFetchedImageCropper(true);
@@ -281,7 +281,7 @@ function Main(props) {
 
   const selectSubscription = useCallback(() => {
     smoothScrollTop();
-    document.title = "WaVer - Subscription";
+    document.title = "ChatGPT CopyTools - Subscription";
     setSelectedTab("Subscription");
   }, [setSelectedTab]);
 
