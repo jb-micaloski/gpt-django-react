@@ -116,7 +116,7 @@ function FormCard(props) {
     fetch("/api/create-session", requestOptions)
       .then((response) => response.json())
       .then((data) => {
-          const encondedInput = btoa(JSON.stringify(input));
+          const encondedInput = encodeURIComponent(JSON.stringify(data));
           history.push(`/c/dashboard?input=${encondedInput}`);
         })
   };
