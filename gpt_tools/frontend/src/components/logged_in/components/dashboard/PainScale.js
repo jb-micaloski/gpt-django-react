@@ -65,7 +65,7 @@ const conseqColumns = [
 
 function PainScale(props) {
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   });
 
   const openai = new OpenAIApi(configuration);
@@ -75,8 +75,8 @@ function PainScale(props) {
   const generateResponse = async (newQuestion) => {
     let options = {
       model: "text-davinci-003",
-      temperature: 0,
-      max_tokens: 400,
+      temperature: 0.7,
+      max_tokens: 800,
       top_p: 1,
       frequency_penalty: 0.0,
       presence_penalty: 0.0,

@@ -78,13 +78,8 @@ WSGI_APPLICATION = 'gpt_tools.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'URL': 'postgresql://postgres:oDGoSzlLh10bvLP1uNDk@containers-us-west-147.railway.app:7081/railway',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'oDGoSzlLh10bvLP1uNDk',
-        'HOST': 'containers-us-west-147.railway.app',
-        'PORT': 7081,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

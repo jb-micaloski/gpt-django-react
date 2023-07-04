@@ -1,0 +1,14 @@
+{
+    "builds": [
+      {
+        "src": "gpt_tools/wsgi.py",
+        "use": "@vercel/python"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "gpt_tools/wsgi.py"
+      }
+    ]
+}
