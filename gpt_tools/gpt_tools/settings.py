@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-xi@59*5aa+oa^oy^4m)ar58g!6dp3we8ya23@)ju2ff!iaomqx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.vercel.app']
 
 
 # Application definition
@@ -76,17 +76,7 @@ WSGI_APPLICATION = 'gpt_tools.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'URL': 'postgresql://postgres:oDGoSzlLh10bvLP1uNDk@containers-us-west-147.railway.app:7081/railway',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'oDGoSzlLh10bvLP1uNDk',
-        'HOST': 'containers-us-west-147.railway.app',
-        'PORT': 7081,
-    }
-}
+DATABASES = {}
 
 
 # Password validation
