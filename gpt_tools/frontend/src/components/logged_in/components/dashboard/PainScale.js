@@ -64,37 +64,41 @@ const conseqColumns = [
 ];
 
 function PainScale(props) {
-  const configuration = new Configuration({
-    apiKey: "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",
-  });
-
-  const openai = new OpenAIApi(configuration);
 
   const [storedValues, setStoredValues] = useState([]);
 
   const generateResponse = async (newQuestion) => {
+
+    const configuration = new Configuration({
+      apiKey: "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",
+    });
+  
+    const openai = new OpenAIApi(configuration);
+
     let options = {
-      model: "text-davinci-003",
-      temperature: 0.7,
+      model: "gpt-3.5-turbo",
+      temperature: 1,
       max_tokens: 800,
       top_p: 1,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.0,
+      frequency_penalty: 0.1,
+      presence_penalty: 0.2,
       stop: ["/"],
     };
 
     let completeOptions = {
-      ...options,
-      prompt: newQuestion,
+      ...options, 
+      messages: [{role:'user', content: newQuestion}],
     };
 
-    const response = await openai.createCompletion(completeOptions);
+    const response = await openai.createChatCompletion(completeOptions);
 
     if (response.data.choices) {
-      setStoredValues(response.data.choices[0].text);
+      setStoredValues([{
+        role: "assistant",
+        content: response.data.choices[0].message.content,
+      }]);
     }
-
-    return response.data.choices[0].text;
+    return response.data.choices[0].message.content;
   };
 
   const { classes } = props;
@@ -140,7 +144,7 @@ function PainScale(props) {
     const context = "I am " + input.whoareyou + ".My goal is to sell " + input.product + ".My product has the following details: " + input.descript + ".The target audience I want to communicate with is: " + input.target + ".My biggest difficulty is still: " + input.trouble + ", and I am trying to solve it by seeing my customer and his pains better. My focus communication channel is " + input.channel + ".I often get the following feedbacks from customers about me: " + input.feedback;
     const userdata = input.whoareyou + " " + input.product + " " + input.descript + " " + input.target + " " + input.trouble + " " + input.channel + " " + input.feedback;
     const start_question =
-      "As an Expert in persona and target audience research with a focus on problem-solving strategies, generate a List of 10 DIFFICULTIES that MY COSTUMER ([TARGET]) HAVE GOT, that can be solved with the product and target audience writen ahead). Responda em PortuguÊs-BR. Just answer the list enumerated from 1 to 10 with a semicolon at the end of each item.";
+      "As an Expert in persona and target audience research with a focus on problem-solving strategies, generate a List of 10 DIFFICULTIES- and ALWAYS SENT TEN - that MY COSTUMER ([TARGET]) HAVE GOT, that can be solved with the product and target audience writen ahead). Responda em PortuguÊs-BR. Just answer the list enumerated from 1 to 10 with a semicolon at the end of each item.";
 
     const first = context + " Considerer the data sent by the user below: " + userdata + ". Now, use the content above to respond the question below: " + start_question;
 
@@ -167,7 +171,7 @@ function PainScale(props) {
       .map((item) => `${item.id}. ${item.dif}`)
       .join("; ");
     const traps_context =
-      "As an Expert in persona and target audience research with a focus on problem-solving strategies, generate a List 10 TRAPS - Traps are solutions that my target audience ([TARGET]) had bought or tried to solve these dificulties above. Responda em PortuguÊs-BR. Just answer the list enumerated from 1 to 10 with a semicolon at the end of each item.";
+      "As an Expert in persona and target audience research with a focus on problem-solving strategies, generate a List 10- and ALWAYS SENT TEN - TRAPS - Traps are solutions that my target audience ([TARGET]) had bought or tried to solve these dificulties above. Responda em PortuguÊs-BR. Just answer the list enumerated from 1 to 10 with a semicolon at the end of each item.";
     const traps_question = selectedDifs + " " + traps_context;
 
     const generate = async () => {
@@ -196,7 +200,7 @@ function PainScale(props) {
       .join("; ");
 
     const frust_context =
-      "As an Expert in persona and target audience research with a focus on problem-solving strategies, generate a List of 10 FRUSTRATIONS - bad beliefs that my target audience ([TARGET]) have got because of the difficulties and traps they had to handle. Responda em PortuguÊs-BR. Just answer the list enumerated from 1 to 10 with a semicolon at the end of each item.";
+      "As an Expert in persona and target audience research with a focus on problem-solving strategies, generate a List of 10 - and ALWAYS SENT TEN - FRUSTRATIONS - bad beliefs that my target audience ([TARGET]) have got because of the difficulties and traps they had to handle. Responda em PortuguÊs-BR. Just answer the list enumerated from 1 to 10 with a semicolon at the end of each item.";
     const frust_question = selectedDifs + " " + selectedTraps + " " + frust_context;
 
     const generate = async () => {
