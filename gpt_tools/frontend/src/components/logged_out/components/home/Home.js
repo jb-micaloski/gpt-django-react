@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import HeadSection from "./HeadSection";
 import FeatureSection from "./FeatureSection";
@@ -7,13 +7,18 @@ import FormSection from "./FormSection";
 
 function Home(props) {
   const { selectHome } = props;
+  const formSectionRef = useRef(null);
+
   useEffect(() => {
     selectHome();
   }, [selectHome]);
+
   return (
     <Fragment>
-      <HeadSection />
-      <FormSection />
+      <HeadSection selectFormSection={() => formSectionRef.current.scrollIntoView({ behavior: 'smooth' })} />
+      <div ref={formSectionRef} >
+        <FormSection />
+      </div>
       <FeatureSection />
       <PricingSection />
     </Fragment>

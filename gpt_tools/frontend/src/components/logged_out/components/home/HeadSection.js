@@ -69,7 +69,7 @@ const styles = (theme) => ({
 });
 
 function HeadSection(props) {
-  const { classes, theme } = props;
+  const { classes, theme, selectFormSection } = props;
   const isWidthUpLg = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
@@ -112,7 +112,7 @@ function HeadSection(props) {
                           fullWidth
                           className={classes.extraLargeButton}
                           classes={{ label: classes.extraLargeButtonLabel }}
-                          href=""
+                          onClick={selectFormSection}
                           style={{fontFamily: "'Baloo Bhaijaan', cursive"}}
                         >
                           Get Started
