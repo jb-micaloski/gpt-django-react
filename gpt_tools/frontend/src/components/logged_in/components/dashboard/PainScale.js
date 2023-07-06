@@ -70,7 +70,7 @@ function PainScale(props) {
   const generateResponse = async (newQuestion) => {
 
     const configuration = new Configuration({
-      apiKey: "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",
+      apiKey: "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",
     });
   
     const openai = new OpenAIApi(configuration);
